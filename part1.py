@@ -6,7 +6,7 @@ import scanpy as sc
 # check if file is downloaded
 # https://ncbi.nlm.nih.gov/geo/download/?acc=GSM3852755&format=file&file=GSM3852755%5FE15%5F5%5Fcounts%2Etar%2Egz
 if not os.path.exists("GSM3852755_E15_5_counts.tar.gz"):
-    print("File not found. Please download the file from the link above and put it in the Downloads folder.")
+    print("File not found. Please download the file.")
     quit()
 
 # set seed to 5005
@@ -54,4 +54,7 @@ sc.tl.umap(adata)
 sc.tl.leiden(adata, resolution=0.5)
 sc.pl.umap(adata, color=["leiden", "pct_counts_mt"], legend_loc="on data")
 
+# calculate which genes define each cluster
+# do these genes efine cell types in literature? eg GSEA, initial paper
 
+sc.tl.score_genes(adata, "leiden", "leiden_genes", gene_list=adata.var_names)
