@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+GSM3852755_E15_5_counts.tar.gz
